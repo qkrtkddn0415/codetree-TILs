@@ -1,2 +1,2 @@
 a=input()
-print(f'A is {a}')
+print(a+2)
