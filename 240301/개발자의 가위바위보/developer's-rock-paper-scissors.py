@@ -7,4 +7,5 @@ for _ in range(N):
 mx=0
 for i in range(1,4):
     mx=max(a_lst[i]-b_lst[i],mx)
+    mx=max(b_lst[i]-a_lst[i],mx)
 print(mx)
