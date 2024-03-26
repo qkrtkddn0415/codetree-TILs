@@ -60,9 +60,7 @@ def laser_attack():
 
         tx,ty=come[ex][ey]
         while tx!=sx or ty!=sy:
-            arr[tx][ty]-=power//2
-            if arr[tx][ty]<0:
-                arr[tx][ty]=0
+            arr[tx][ty]=max(0,arr[tx][ty]-power//2)
             is_attacked[tx][ty]=True
             tx,ty=come[tx][ty]
     return flag
