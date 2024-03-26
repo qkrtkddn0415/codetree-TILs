@@ -75,14 +75,10 @@ def bomb_attack():
         if sx==nx and sy==ny:
             continue
         if nx==ex and ny==ey:
-            arr[nx][ny]-=power
-            if arr[nx][ny]<0:
-                arr[nx][ny]=0
+            arr[nx][ny]=max(0,arr[nx][ny]-power)
             is_attacked[nx][ny]=True
         else:
-            arr[nx][ny]-=power//2
-            if arr[nx][ny]<0:
-                arr[nx][ny]=0
+            arr[nx][ny]=max(0,arr[nx][ny]-power//2)
             is_attacked[nx][ny]=True
         
 def repair():
