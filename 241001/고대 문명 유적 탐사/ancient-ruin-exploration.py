@@ -22,29 +22,29 @@ def count(arr,clr):     #해당 배열을 회전시켰을 때, 얻을 수 있는
 
 def bfs(arr,v,i,j,clr):
     q=[]
-    q.append((i,j))
     cnt=0
-    sset=set()
-
-    v[i][j]=1
-    sset.add((i,j))
     cnt+=1
+    q.append((i,j))
+    sset=set()
+    sset.add((i,j))
+    v[i][j]=1
     while q:
         ci,cj=q.pop(0)
-        for di,dj in ((-1,0),(1,0),(0,1),(0,-1)):
+        for di,dj in ((-1,0),(1,0),(0,-1),(0,1)):
             ni,nj=ci+di,cj+dj
-            if 0<=ni<5 and 0<=nj<5 and arr[ci][cj]==arr[ni][nj] and v[ni][nj]==0:
+            if 0<=ni<5 and 0<=nj<5 and arr[ni][nj]==arr[ci][cj] and not v[ni][nj]:
                 q.append((ni,nj))
                 v[ni][nj]=1
                 sset.add((ni,nj))
                 cnt+=1
     if cnt>=3:
         if clr==1:
-            for i,j in sset:
+            for i, j in sset:
                 arr[i][j]=0
         return cnt
     else:
         return 0
+
 
 for _ in range(K):#[0] K턴만큼 수행
     mx_cnt=0                #매 턴마다 mx_cnt갯수를 초기화, 해당 턴동안 유물을 얻을 수 없으면 break
