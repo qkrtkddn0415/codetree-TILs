@@ -3,12 +3,11 @@ arr=[list(map(int,input().split())) for _ in range(5)]
 lst=list(map(int,input().split()))
 ans=[]
 
-def rotate(arr,si,sj,rot):
+def rotate(arr,si,sj):
     narr=[x[:] for x in arr]    #deepcopy보다 빠름
-    for _ in range(rot):
-        for i in range(3):
-            for j in range(3):
-                narr[si+i][sj+j]=arr[si+3-j-1][sj+i]
+    for i in range(3):
+        for j in range(3):
+            narr[si+i][sj+j]=arr[si+3-j-1][sj+i]
     return narr
 
 def count(arr,clr):     #해당 배열을 회전시켰을 때, 얻을 수 있는 점수의 최대 합을 계산
@@ -54,8 +53,8 @@ for _ in range(K):#[0] K턴만큼 수행
         for sj in range(0,3):       #회전한 열이 가장 작고
             for si in range(0,3):   #회전한 행이 가잔 작은 배열을 고름
                 narr=[x[:] for x in arr]    #deepcopy보다 빠름
-                #for _ in range(rot):     #해당 구간을 rot회만큼 회전시켜줘야 함
-                narr=rotate(narr,si,sj,rot) #narr의 si, sj를 기준으로 rot회만큼 회전
+                for _ in range(rot):     #해당 구간을 rot회만큼 회전시켜줘야 함
+                    narr=rotate(narr,si,sj) #narr의 si, sj를 기준으로 rot회만큼 회전
                 #[1-1]획득된 유물이 가장 많은 구간을 찾음
                 t=count(narr,0)   #이 구간을 rot회만큼 회전시켰을 때의, 가장 많은 점수를 일단 확인함
                 if mx_cnt<t:        #만약, 이전보다 더 많은 점수를 획득할 수 있는 구간이라면, 점수를 얻고 해당 배열을 저장함.
